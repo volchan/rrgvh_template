@@ -51,10 +51,16 @@ def add_template_repository_to_source_path
   end
 end
 
+def clean_gemfile
+  template 'Gemfile.tt', force: true
+end
+
 def apply_template!
   assert_minimum_rails_version
   assert_pg
+  assert_api
   add_template_repository_to_source_path
+  clean_gemfile
 end
 
 run 'pgrep spring | xargs kill -9'
