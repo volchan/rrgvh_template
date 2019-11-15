@@ -25,6 +25,14 @@ def assert_pg
   exit 1
 end
 
+def assert_api
+  return if options['api']
+
+  puts 'Please add "--api" flag!'
+  delete_app
+  exit 1
+end
+
 def add_template_repository_to_source_path
   if __FILE__ =~ %r{\Ahttps?://}
     source_paths.unshift(tempdir = Dir.mktmpdir('rails-template-'))
