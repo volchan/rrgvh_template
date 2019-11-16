@@ -1,6 +1,7 @@
 require 'fileutils'
 require 'shellwords'
 require 'tmpdir'
+require 'pry-byebug'
 
 def delete_app
   run "rm -rf ../#{app_name}"
@@ -13,6 +14,14 @@ def assert_minimum_rails_version
   return if requirement.satisfied_by?(rails_version)
 
   puts "/!\\ /!\\ Please install rails #{minimum_rails_verion} /!\\ /!\\"
+  delete_app
+  exit 1
+end
+
+def assert_vue_cli
+  return if `which vue`.presence
+
+  puts 'Please install vue-cli: "yarn global add @vue/cli"'
   delete_app
   exit 1
 end
@@ -79,6 +88,7 @@ end
 
 def apply_template!
   assert_minimum_rails_version
+  assert_vue_cli
   assert_pg
   assert_api
   add_template_repository_to_source_path
