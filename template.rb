@@ -55,12 +55,23 @@ def clean_gemfile
   template 'Gemfile.tt', force: true
 end
 
+def graphql_setup
+  run 'rails g graphql:install'
+end
+
+def gems_setup
+  graphql_setup
+end
+
 def apply_template!
   assert_minimum_rails_version
   assert_pg
   assert_api
   add_template_repository_to_source_path
   clean_gemfile
+  after_bundle do
+    gems_setup
+  end
 end
 
 run 'pgrep spring | xargs kill -9'
