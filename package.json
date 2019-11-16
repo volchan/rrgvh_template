@@ -1,0 +1,12 @@
+{
+  "name": "dda-proposal",
+  "engines": {
+    "node": "10.15.3",
+    "yarn": "1.17.3"
+  },
+  "scripts": {
+    "build": "yarn --cwd client install && yarn --cwd client build",
+    "deploy": "cp -a client/dist/. public/",
+    "heroku-postbuild": "yarn build && yarn deploy"
+  }
+}
