@@ -70,6 +70,13 @@ def gems_setup
   graphql_setup
 end
 
+def copy_root_config_files
+  copy_file '.rubocop.yml'
+  copy_file 'Procfile'
+  copy_file 'Procfile.dev'
+  copy_file 'package.json'
+end
+
 def apply_template!
   assert_minimum_rails_version
   assert_pg
@@ -78,6 +85,7 @@ def apply_template!
   clean_gemfile
   after_bundle do
     gems_setup
+    copy_root_config_files
   end
 end
 
