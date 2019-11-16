@@ -5,27 +5,27 @@ AllCops:
     - Rakefile
     - config.ru
   Exclude:
-    - 'vendor/**/*'
-    - 'db/**/*'
-    - 'db/migrate/**'
-    - 'config/**/*'
-    - 'config/environnements/**'
-    - 'bin/**/*'
-    - 'tmp/*'
-    - 'Guardfile'
-    - 'node_modules/**/*' #webpacker & rails 5.1
-
-Documentation:
-  Enabled: false
+    - "vendor/**/*"
+    - "db/**/*"
+    - "db/migrate/**"
+    - "config/**/*"
+    - "config/environnements/**"
+    - "bin/**/*"
+    - "tmp/*"
+    - "Guardfile"
+    - "node_modules/**/*" #webpacker & rails 5.1
 
 Metrics/LineLength:
   Max: 120
 
-Metrics/MethodLength: 
+Metrics/MethodLength:
   Max: 20
 
 Metrics/ClassLength:
   Max: 200
+
+Style/Documentation:
+  Enabled: false
 
 Style/FrozenStringLiteralComment:
   Enabled: false
