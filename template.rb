@@ -58,6 +58,7 @@ end
 def devise_setup
   run 'rails g devise:install'
   run 'rails g devise model User'
+  run 'rails g migration AddJtiTokenToUsers jti'
 end
 
 def graphql_setup
