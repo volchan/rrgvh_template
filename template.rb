@@ -55,11 +55,17 @@ def clean_gemfile
   template 'Gemfile.tt', force: true
 end
 
+def devise_setup
+  run 'rails g devise:install'
+  run 'rails g devise model User'
+end
+
 def graphql_setup
   run 'rails g graphql:install'
 end
 
 def gems_setup
+  devise_setup
   graphql_setup
 end
 
