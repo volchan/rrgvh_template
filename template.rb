@@ -19,7 +19,7 @@ def assert_minimum_rails_version
 end
 
 def assert_vue_cli
-  return unless `which vue`.presence
+  return if `which vue`.presence
 
   puts 'Please install vue-cli: "yarn global add @vue/cli"'
   delete_app
