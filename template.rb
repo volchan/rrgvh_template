@@ -64,6 +64,10 @@ def clean_gemfile
   template 'Gemfile.tt', force: true
 end
 
+def annotate_setup
+  run 'rails g annotate:install'
+end
+
 def devise_setup
   run 'rails g devise:install'
   run 'rails g devise User'
@@ -75,6 +79,7 @@ def graphql_setup
 end
 
 def gems_setup
+  annotate_setup
   devise_setup
   graphql_setup
 end
