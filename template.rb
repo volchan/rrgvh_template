@@ -68,9 +68,18 @@ def annotate_setup
   run 'rails g annotate:install'
 end
 
+def tests_setup
+  run 'rails g rspec:install'
+  copy_file './spec/rails_helper.rb', force: true
+  copy_file './spec/support/database_cleaner.rb'
+  copy_file './spec/support/devise_helper.rb'
+  copy_file './spec/support/graphql_spec_helper.rb'
+  copy_file './spec/support/request_spec_helper.rb'
+end
+
 def devise_setup
   run 'rails g devise:install'
-  run 'rails g devise model User'
+  run 'rails g devise User'
   run 'rails g migration AddJtiTokenToUsers jti'
 end
 
@@ -80,6 +89,7 @@ end
 
 def gems_setup
   annotate_setup
+  tests_setup
   devise_setup
   graphql_setup
 end
